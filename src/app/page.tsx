@@ -1898,6 +1898,33 @@ function Footer() {
             <span>Privacy</span><span>Terms</span><span>Cookies</span>
           </div>
         </div>
+        <Separator className="mt-4 mb-4" />
+        <div className="flex items-center justify-center text-xs text-slate-500">
+          <span className="text-slate-400">Crafted with </span>
+          <span className="mx-1">🚀</span>
+          <span className="text-slate-400"> by </span>
+          <a
+            href="https://Umangpandey.in"
+            target="_blank"
+            rel="noopener noreferrer"
+            className="font-bold text-orange-600 hover:text-orange-700 inline-flex items-center gap-0.5 transition-colors"
+          >
+            Umang Pandey
+            <svg className="w-3 h-3" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round">
+              <path d="M7 17 17 7" />
+              <path d="M7 7h10v10" />
+            </svg>
+          </a>
+          <span className="text-slate-400 mx-1">.</span>
+          <a
+            href="https://Umangpandey.in"
+            target="_blank"
+            rel="noopener noreferrer"
+            className="text-slate-400 hover:text-slate-700 transition-colors"
+          >
+            Umangpandey.in
+          </a>
+        </div>
       </div>
     </footer>
   );

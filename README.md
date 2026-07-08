@@ -392,7 +392,7 @@ Distributed under the **MIT License**. See [`LICENSE`](LICENSE) for more informa
 &nbsp;
 [![GitHub](https://img.shields.io/badge/GitHub-181717?style=for-the-badge&logo=github&logoColor=white)](https://github.com/Umangpandey75)
 &nbsp;
-[![Portfolio](https://img.shields.io/badge/Portfolio-6AD3F7?style=for-the-badge&logo=vercel&logoColor=black)](https://umangpandey.vercel.app)
+[![Portfolio](https://img.shields.io/badge/Portfolio-6AD3F7?style=for-the-badge&logo=vercel&logoColor=black)](https://Umangpandey.in)
 
 *"Pick the players. Build the strategy. Ship the WIN. 🏏"*
 
@@ -420,7 +420,17 @@ If **IPL Fantasy** helped you or you enjoyed using it, please give it a ⭐ — 
 
 <div align="center">
 
-*Made with ❤️ by [Umang Pandey](https://github.com/Umangpandey75) · © 2026 IPL Fantasy*
+*Made with ❤️ by [Umang Pandey](https://Umangpandey.in) · © 2026 IPL Fantasy*
+
+<p>
+  <a href="https://Umangpandey.in" target="_blank">
+    <img src="https://img.shields.io/badge/Crafted_with_🚀_by_Umang_Pandey-FF6F00?style=for-the-badge&logo=rocket&logoColor=white" alt="Crafted with 🚀 by Umang Pandey" />
+  </a>
+  &nbsp;
+  <a href="https://Umangpandey.in" target="_blank">
+    <img src="https://img.shields.io/badge/Umangpandey.in-6AD3F7?style=for-the-badge&logo=vercel&logoColor=black" alt="Umangpandey.in" />
+  </a>
+</p>
 
 ![Visitors](https://visitor-badge.laobi.icu/badge?page_id=shabadgrover.ipl-fantasy&left_color=1F6FEB&right_color=6AD3F7&left_text=Visitors)
 </div>
