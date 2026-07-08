@@ -2,6 +2,7 @@ import type { Metadata } from "next";
 import { Inter, Poppins } from "next/font/google";
 import "./globals.css";
 import { Toaster } from "@/components/ui/toaster";
+import { AuthProvider } from "@/lib/ipl/auth";
 
 const inter = Inter({
   variable: "--font-inter",
@@ -15,9 +16,9 @@ const poppins = Poppins({
 });
 
 export const metadata: Metadata = {
-  title: "IPL Fantasy League 2026 — Build Your Dream Cricket Team",
-  description: "The premium IPL Fantasy experience. Build your XI, track live scores, compete on leaderboard, and win in IPL 2026 season.",
-  keywords: ["IPL", "Fantasy Cricket", "IPL 2026", "Cricket Fantasy", "IPL Fantasy League"],
+  title: "IPL Fantasy League 2025 — Build Your Dream Cricket Team",
+  description: "The premium IPL Fantasy experience. Build your XI, compete on leaderboard, and win in IPL 2025 season. Real fixtures, real players, real points.",
+  keywords: ["IPL", "Fantasy Cricket", "IPL 2025", "Cricket Fantasy", "IPL Fantasy League", "RCB", "Bumrah", "Kohli"],
   authors: [{ name: "IPL Fantasy" }],
 };
 
@@ -32,8 +33,10 @@ export default function RootLayout({
         className={`${inter.variable} ${poppins.variable} antialiased bg-white text-slate-900 font-sans`}
         style={{ fontFamily: 'var(--font-inter), system-ui, sans-serif' }}
       >
-        {children}
-        <Toaster />
+        <AuthProvider>
+          {children}
+          <Toaster />
+        </AuthProvider>
       </body>
     </html>
   );
