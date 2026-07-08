@@ -4,7 +4,7 @@
 
 <div align="center">
 <!-- ═══════════ TYPING ANIMATION ═══════════ -->
-[![Typing SVG](https://readme-typing-svg.demolab.com?font=Outfit&weight=700&size=22&pause=900&color=f953c6&background=00000000&center=true&vCenter=true&repeat=true&width=850&height=65&lines=🏏+Build+Your+Dream+Cricket+Team+in+IPL+Fantasy;🏆+Compete+with+Thousands+of+Cricket+Fans+Globally;🔐+Simple+Name-Based+Auth+%7C+Save+%26+Track+Your+Fantasy+XI;📊+Real+IPL+2026+Fixtures+%26+Live+Player+Stats;⚔️+Head-to-Head+Player+Comparison+%26+Detailed+Modals;👑+Captain+%26+Vice-Captain+Multipliers+%7C+Join+Contests)](https://git.io/typing-svg)
+[![Typing SVG](https://readme-typing-svg.demolab.com?center=true&vCenter=true&font=Outfit&weight=700&size=22&pause=900&color=f953c6&background=00000000&repeat=true&width=850&height=65&lines=🏏+Build+Your+Dream+Cricket+Team+in+IPL+Fantasy;🏆+Compete+with+Thousands+of+Cricket+Fans+Globally;🔐+Simple+Name-Based+Auth+%7C+Save+%26+Track+Your+Fantasy+XI;📊+Real+IPL+2026+Fixtures+%26+Live+Player+Stats;⚔️+Head-to-Head+Player+Comparison+%26+Detailed+Modals;👑+Captain+%26+Vice-Captain+Multipliers+%7C+Join+Contests)](https://git.io/typing-svg)
 <br/>
 
 <!-- ═══════════ BADGES ═══════════ -->
