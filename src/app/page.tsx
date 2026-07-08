@@ -124,7 +124,7 @@ function Header({ section, setSection, navItems, onAuthClick, onCompareClick }: 
               <div className="font-black text-lg tracking-tight bg-gradient-to-r from-rose-600 via-orange-600 to-amber-600 bg-clip-text text-transparent">
                 IPL FANTASY
               </div>
-              <div className="text-[10px] text-slate-500 -mt-1 font-medium tracking-wider uppercase">IPL 2026 Champions: RCB • 2027 Coming Soon</div>
+              <div className="text-[10px] text-slate-500 -mt-1 font-medium tracking-wider uppercase">Premium Cricket Experience</div>
             </div>
           </div>
 
