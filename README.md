@@ -20,15 +20,15 @@
 
 <br/>
 
-![Repo Size](https://img.shields.io/github/repo-size/shabadgrover/ipl-fantasy?style=flat-square&color=6AD3F7&label=Repo+Size)
+![Repo Size](https://img.shields.io/github/repo-size/Umangpandey75/IPL_Fantasy?style=flat-square&color=6AD3F7&label=Repo+Size)
 &nbsp;
-![Last Commit](https://img.shields.io/github/last-commit/shabadgrover/ipl-fantasy?style=flat-square&color=58A6FF&label=Last+Commit)
+![Last Commit](https://img.shields.io/github/last-commit/Umangpandey75/IPL_Fantasy?style=flat-square&color=58A6FF&label=Last+Commit)
 &nbsp;
-![License](https://img.shields.io/github/license/shabadgrover/ipl-fantasy?style=flat-square&color=27AE60)
+![License](https://img.shields.io/github/license/Umangpandey75/IPL_Fantasy?style=flat-square&color=27AE60)
 &nbsp;
-![Stars](https://img.shields.io/github/stars/shabadgrover/ipl-fantasy?style=social)
+![Stars](https://img.shields.io/github/stars/Umangpandey75/IPL_Fantasy?style=social)
 &nbsp;
-![Forks](https://img.shields.io/github/forks/shabadgrover/ipl-fantasy?style=social)
+![Forks](https://img.shields.io/github/forks/Umangpandey75/IPL_Fantasy?style=social)
 
 </div>
 
@@ -184,7 +184,7 @@ curl -fsSL https://bun.sh/install | bash
 
 ```bash
 # 1. Clone the repository
-git clone https://github.com/shabadgrover/ipl-fantasy.git
+git clone https://github.com/Umangpandey75/IPL_Fantasy.git
 
 # 2. Navigate to the project directory
 cd ipl-fantasy
@@ -406,11 +406,11 @@ If **IPL Fantasy** helped you or you enjoyed using it, please give it a ⭐ — 
 
 <div align="center">
 
-[![Star this repo](https://img.shields.io/badge/⭐_Star_this_repo-FFD700?style=for-the-badge)](https://github.com/shabadgrover/ipl-fantasy/stargazers)
+[![Star this repo](https://img.shields.io/badge/⭐_Star_this_repo-FFD700?style=for-the-badge)](https://github.com/Umangpandey75/IPL_Fantasy/stargazers)
 &nbsp;
-[![Fork this repo](https://img.shields.io/badge/🍴_Fork_it-58A6FF?style=for-the-badge)](https://github.com/shabadgrover/ipl-fantasy/fork)
+[![Fork this repo](https://img.shields.io/badge/🍴_Fork_it-58A6FF?style=for-the-badge)](https://github.com/Umangpandey75/IPL_Fantasy/fork)
 &nbsp;
-[![Share on Twitter](https://img.shields.io/badge/Share_on_Twitter-1DA1F2?style=for-the-badge&logo=twitter&logoColor=white)](https://twitter.com/intent/tweet?text=Check+out+IPL+Fantasy+by+%40Umangpandey75!+%F0%9F%8F%8F%E2%9A%94%EF%B8%8F&url=https://github.com/shabadgrover/ipl-fantasy)
+[![Share on Twitter](https://img.shields.io/badge/Share_on_Twitter-1DA1F2?style=for-the-badge&logo=twitter&logoColor=white)](https://twitter.com/intent/tweet?text=Check+out+IPL+Fantasy+by+%40Umangpandey75!+%F0%9F%8F%8F%E2%9A%94%EF%B8%8F&url=https://github.com/Umangpandey75/IPL_Fantasy)
 
 </div>
 
@@ -432,5 +432,5 @@ If **IPL Fantasy** helped you or you enjoyed using it, please give it a ⭐ — 
   </a>
 </p>
 
-![Visitors](https://visitor-badge.laobi.icu/badge?page_id=shabadgrover.ipl-fantasy&left_color=1F6FEB&right_color=6AD3F7&left_text=Visitors)
+![Visitors](https://visitor-badge.laobi.icu/badge?page_id=Umangpandey75.IPL_Fantasy&left_color=1F6FEB&right_color=6AD3F7&left_text=Visitors)
 </div>
