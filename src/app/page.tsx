@@ -32,7 +32,7 @@ import { TEAMS, TEAM_ABBRS } from "@/lib/ipl/teams";
 import { PLAYERS, Player, getPlayersByRole, PlayerRole } from "@/lib/ipl/players";
 import {
   MATCHES, UPCOMING_MATCHES, STANDINGS, FANTASY_LEADERBOARD,
-  IMPACT_PLAYERS, POINT_SYSTEM, FantasyTeam
+  IMPACT_PLAYERS, POINT_SYSTEM, FantasyTeam, IPL_2027_STATUS
 } from "@/lib/ipl/matches";
 import { useAuth, UserTeam } from "@/lib/ipl/auth";
 
@@ -50,7 +50,7 @@ const ROLE_ICONS: Record<PlayerRole, string> = {
   "Wicketkeeper": "🧤",
 };
 
-type Section = "home" | "team-builder" | "players" | "schedule" | "leaderboard" | "standings" | "contests" | "stats";
+type Section = "home" | "team-builder" | "players" | "schedule" | "leaderboard" | "standings" | "contests" | "stats" | "my-team";
 
 export default function IPLFantasyPage() {
   const [section, setSection] = useState<Section>("home");
@@ -63,6 +63,7 @@ export default function IPLFantasyPage() {
   const navItems: { id: Section; label: string; icon: any }[] = [
     { id: "home", label: "Home", icon: Home },
     { id: "team-builder", label: "Build Team", icon: Volleyball },
+    { id: "my-team", label: "My Team", icon: Shield },
     { id: "players", label: "Players", icon: Users },
     { id: "schedule", label: "Schedule", icon: Calendar },
     { id: "standings", label: "Standings", icon: BarChart3 },
@@ -84,6 +85,7 @@ export default function IPLFantasyPage() {
         <AnimatePresence mode="wait">
           {section === "home" && <HomeSection key="home" setSection={setSection} onAuthClick={() => setAuthOpen(true)} onPlayerClick={setStatsPlayer} />}
           {section === "team-builder" && <TeamBuilder key="tb" onAuthClick={() => setAuthOpen(true)} onPlayerClick={setStatsPlayer} />}
+          {section === "my-team" && <MyTeamSection key="my-team" setSection={setSection} onAuthClick={() => setAuthOpen(true)} onPlayerClick={setStatsPlayer} />}
           {section === "players" && <PlayersSection key="players" onPlayerClick={setStatsPlayer} onCompareClick={() => setCompareOpen(true)} />}
           {section === "schedule" && <ScheduleSection key="schedule" />}
           {section === "standings" && <StandingsSection key="standings" />}
@@ -122,7 +124,7 @@ function Header({ section, setSection, navItems, onAuthClick, onCompareClick }: 
               <div className="font-black text-lg tracking-tight bg-gradient-to-r from-rose-600 via-orange-600 to-amber-600 bg-clip-text text-transparent">
                 IPL FANTASY
               </div>
-              <div className="text-[10px] text-slate-500 -mt-1 font-medium tracking-wider uppercase">Season 2025 • Champions: RCB</div>
+              <div className="text-[10px] text-slate-500 -mt-1 font-medium tracking-wider uppercase">IPL 2026 Champions: RCB • 2027 Coming Soon</div>
             </div>
           </div>
 
@@ -147,12 +149,12 @@ function Header({ section, setSection, navItems, onAuthClick, onCompareClick }: 
             </Button>
             {hasJoined && user ? (
               <div className="flex items-center gap-2">
-                <Avatar className="w-9 h-9 ring-2 ring-orange-200 cursor-pointer" onClick={() => setSection("leaderboard")}>
+                <Avatar className="w-9 h-9 ring-2 ring-orange-200 cursor-pointer" onClick={() => setSection("my-team")}>
                   <AvatarFallback className="bg-gradient-to-br from-orange-500 to-rose-500 text-white text-xs font-bold">
                     {user.name.slice(0, 2).toUpperCase()}
                   </AvatarFallback>
                 </Avatar>
-                <button onClick={logout} className="hidden sm:block text-xs text-slate-500 hover:text-rose-600 font-medium">
+                <button onClick={logout} className="hidden sm:block text-xs text-slate-500 hover:text-rose-600 font-medium" title="Logout">
                   <LogOut className="w-4 h-4" />
                 </button>
               </div>
@@ -208,7 +210,7 @@ function HomeSection({ setSection, onAuthClick, onPlayerClick }: any) {
           <div className="grid lg:grid-cols-2 gap-8 lg:gap-12 items-center">
             <motion.div initial={{ opacity: 0, y: 20 }} animate={{ opacity: 1, y: 0 }} transition={{ duration: 0.5 }}>
               <Badge className="mb-4 bg-orange-100 text-orange-700 border-orange-200 hover:bg-orange-100">
-                <Sparkles className="w-3 h-3 mr-1" /> IPL 2025 SEASON • CHAMPIONS: RCB 🏆
+                <Sparkles className="w-3 h-3 mr-1" /> IPL 2026 COMPLETED • CHAMPIONS: RCB 🏆
               </Badge>
               <h1 className="text-4xl sm:text-5xl lg:text-6xl font-black tracking-tighter text-slate-900 leading-[1.05]">
                 Build Your Dream
@@ -217,8 +219,8 @@ function HomeSection({ setSection, onAuthClick, onPlayerClick }: any) {
                 </span>
               </h1>
               <p className="mt-5 text-base sm:text-lg text-slate-600 leading-relaxed max-w-xl">
-                Pick 11 players from 10 IPL teams within a 100-credit budget. Choose your Captain & Vice-Captain.
-                Compete live with thousands of cricket fans on the global leaderboard.
+                IPL 2026 season is complete. Build your fantasy XI from the 10 IPL teams, choose your Captain & Vice-Captain,
+                and compete on the global leaderboard. <span className="font-semibold text-violet-600">IPL 2027 coming soon!</span>
               </p>
               <div className="mt-7 flex flex-wrap gap-3">
                 <Button
@@ -289,7 +291,7 @@ function HomeSection({ setSection, onAuthClick, onPlayerClick }: any) {
               <Flame className="w-3 h-3 mr-1" /> HOT PICKS
             </Badge>
             <h2 className="text-2xl sm:text-3xl font-black text-slate-900 tracking-tight">Top Performing Players</h2>
-            <p className="text-sm text-slate-500 mt-1">Based on IPL 2025 season form & fantasy points</p>
+            <p className="text-sm text-slate-500 mt-1">Based on IPL 2026 season form & fantasy points</p>
           </div>
           <Button variant="outline" size="sm" onClick={() => setSection("players")} className="hidden sm:flex">
             View All <ChevronRight className="w-4 h-4" />
@@ -364,7 +366,7 @@ function HomeSection({ setSection, onAuthClick, onPlayerClick }: any) {
           <div className="relative flex flex-col md:flex-row items-center justify-between gap-6">
             <div className="flex-1">
               <Badge className="mb-3 bg-white/20 text-white border-white/30 hover:bg-white/20">
-                <Crown className="w-3 h-3 mr-1" /> IPL 2025 CHAMPIONS
+                <Crown className="w-3 h-3 mr-1" /> IPL 2026 CHAMPIONS
               </Badge>
               <h2 className="text-3xl sm:text-4xl font-black tracking-tight">Royal Challengers Bengaluru</h2>
               <p className="mt-2 text-white/80">Beat Punjab Kings by 6 runs in the Final at Narendra Modi Stadium, Ahmedabad</p>
@@ -392,37 +394,41 @@ function HeroStat({ label, value, icon: Icon }: any) {
 }
 
 function FeaturedMatchCard() {
-  const match = UPCOMING_MATCHES[0];
-  const teamA = TEAMS[match.abbrs[0]];
-  const teamB = TEAMS[match.abbrs[1]];
   return (
     <Card className="overflow-hidden border-slate-200 shadow-2xl shadow-slate-300/50">
-      <div className="bg-gradient-to-r from-slate-900 to-slate-800 text-white p-4 flex items-center justify-between">
+      <div className="bg-gradient-to-r from-violet-600 via-purple-600 to-fuchsia-600 text-white p-4 flex items-center justify-between">
         <div className="flex items-center gap-2">
-          <Badge className="bg-rose-500 hover:bg-rose-500 text-white border-0">
-            <span className="w-1.5 h-1.5 rounded-full bg-white mr-1.5 animate-pulse" /> UPCOMING
+          <Badge className="bg-white/20 hover:bg-white/20 text-white border-0">
+            <Sparkles className="w-3 h-3 mr-1" /> COMING SOON
           </Badge>
-          <span className="text-xs font-semibold text-white/70">IPL 2026 — Season Opener</span>
+          <span className="text-xs font-semibold text-white/80">Next Season</span>
         </div>
-        <span className="text-xs text-white/60 font-mono">Match 1</span>
+        <span className="text-xs text-white/60 font-mono">IPL 2027</span>
       </div>
-      <div className="p-6">
-        <div className="flex items-center justify-between gap-3">
-          <TeamBadgeLarge team={teamA} />
-          <div className="text-center">
-            <div className="text-xs font-bold text-slate-400 uppercase">VS</div>
-            <div className="text-[10px] text-slate-400 mt-1">{match.time}</div>
-          </div>
-          <TeamBadgeLarge team={teamB} />
+      <div className="p-6 text-center">
+        <div className="w-20 h-20 rounded-3xl bg-gradient-to-br from-violet-500 via-purple-500 to-fuchsia-500 flex items-center justify-center mx-auto mb-4 shadow-lg shadow-purple-500/30">
+          <Calendar className="w-10 h-10 text-white" />
         </div>
-        <div className="mt-5 pt-5 border-t border-slate-100 grid grid-cols-2 gap-3 text-xs">
+        <h3 className="text-2xl font-black text-slate-900 tracking-tight">IPL 2027 Schedule</h3>
+        <p className="mt-2 text-sm text-slate-600 leading-relaxed max-w-sm mx-auto">
+          {IPL_2027_STATUS.message}
+        </p>
+        <div className="mt-4 inline-flex items-center gap-2 px-4 py-2 rounded-full bg-amber-50 border border-amber-200">
+          <Calendar className="w-4 h-4 text-amber-600" />
+          <span className="text-sm font-semibold text-amber-700">Expected: {IPL_2027_STATUS.expectedStart}</span>
+        </div>
+        <div className="mt-5 pt-5 border-t border-slate-100 grid grid-cols-3 gap-3 text-center">
           <div>
-            <div className="text-slate-400 font-semibold uppercase text-[10px]">Date</div>
-            <div className="font-bold text-slate-700">{match.date}</div>
+            <div className="text-lg font-black text-slate-900">TBD</div>
+            <div className="text-[10px] text-slate-400 font-semibold uppercase">Start</div>
           </div>
-          <div className="text-right">
-            <div className="text-slate-400 font-semibold uppercase text-[10px]">Venue</div>
-            <div className="font-bold text-slate-700 text-xs">{match.venue}</div>
+          <div>
+            <div className="text-lg font-black text-slate-900">10</div>
+            <div className="text-[10px] text-slate-400 font-semibold uppercase">Teams</div>
+          </div>
+          <div>
+            <div className="text-lg font-black text-slate-900">74+</div>
+            <div className="text-[10px] text-slate-400 font-semibold uppercase">Matches</div>
           </div>
         </div>
       </div>
@@ -841,6 +847,247 @@ function TeamBuilder({ onAuthClick, onPlayerClick }: any) {
   );
 }
 
+// ============ MY TEAM SECTION ============
+function MyTeamSection({ setSection, onAuthClick, onPlayerClick }: any) {
+  const { user, savedTeam, hasJoined } = useAuth();
+
+  if (!hasJoined || !user) {
+    return (
+      <div className="max-w-3xl mx-auto px-4 sm:px-6 lg:px-8 py-16 text-center">
+        <div className="w-20 h-20 rounded-3xl bg-gradient-to-br from-orange-100 to-rose-100 flex items-center justify-center mx-auto mb-5">
+          <Shield className="w-10 h-10 text-orange-500" />
+        </div>
+        <Badge className="mb-3 bg-orange-100 text-orange-700 border-orange-200 hover:bg-orange-100">
+          <Shield className="w-3 h-3 mr-1" /> MY TEAM
+        </Badge>
+        <h1 className="text-3xl sm:text-4xl font-black tracking-tight text-slate-900">You haven't joined yet</h1>
+        <p className="mt-3 text-slate-600 max-w-md mx-auto">
+          Join the league to build your fantasy team and see it here. It's quick — just enter your name.
+        </p>
+        <Button size="lg" onClick={onAuthClick} className="mt-6 bg-gradient-to-r from-rose-600 via-orange-600 to-amber-600 hover:shadow-lg rounded-full">
+          <LogIn className="w-4 h-4 mr-2" /> Join Now — It's Free
+        </Button>
+      </div>
+    );
+  }
+
+  if (!savedTeam) {
+    return (
+      <div className="max-w-3xl mx-auto px-4 sm:px-6 lg:px-8 py-16 text-center">
+        <div className="w-20 h-20 rounded-3xl bg-gradient-to-br from-rose-100 to-orange-100 flex items-center justify-center mx-auto mb-5">
+          <Volleyball className="w-10 h-10 text-rose-500" />
+        </div>
+        <Badge className="mb-3 bg-rose-100 text-rose-700 border-rose-200 hover:bg-rose-100">
+          <Volleyball className="w-3 h-3 mr-1" /> BUILD YOUR TEAM
+        </Badge>
+        <h1 className="text-3xl sm:text-4xl font-black tracking-tight text-slate-900">No team saved yet</h1>
+        <p className="mt-3 text-slate-600 max-w-md mx-auto">
+          Welcome, <span className="font-bold text-slate-900">{user.name}</span>! Build your fantasy XI to see it here and join the leaderboard.
+        </p>
+        <Button size="lg" onClick={() => setSection("team-builder")} className="mt-6 bg-gradient-to-r from-rose-600 via-orange-600 to-amber-600 hover:shadow-lg rounded-full">
+          <Volleyball className="w-4 h-4 mr-2" /> Build Your Team
+        </Button>
+      </div>
+    );
+  }
+
+  // Compute stats
+  const captain = savedTeam.players.find((p) => p.isCaptain);
+  const viceCaptain = savedTeam.players.find((p) => p.isViceCaptain);
+  const roleCount: Record<PlayerRole, number> = { Batsman: 0, Bowler: 0, "All-Rounder": 0, Wicketkeeper: 0 };
+  savedTeam.players.forEach((p) => {
+    const player = PLAYERS.find((pl) => pl.name === p.name);
+    if (player) roleCount[player.role]++;
+  });
+  const teamCount: Record<string, number> = {};
+  savedTeam.players.forEach((p) => {
+    teamCount[p.team] = (teamCount[p.team] || 0) + 1;
+  });
+  const totalCredits = savedTeam.players.reduce((sum, p) => {
+    const player = PLAYERS.find((pl) => pl.name === p.name);
+    return sum + (player?.credits || 0);
+  }, 0);
+  const savedAt = new Date(savedTeam.joinedAt).toLocaleString("en-IN", { day: "numeric", month: "short", year: "numeric", hour: "2-digit", minute: "2-digit" });
+
+  return (
+    <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-8">
+      <div className="mb-6">
+        <Badge className="mb-2 bg-orange-100 text-orange-700 border-orange-200 hover:bg-orange-100">
+          <Shield className="w-3 h-3 mr-1" /> MY TEAM
+        </Badge>
+        <h1 className="text-3xl sm:text-4xl font-black tracking-tight text-slate-900">{savedTeam.teamName}</h1>
+        <p className="text-sm text-slate-500 mt-1">
+          Owner: <span className="font-semibold text-slate-700">{savedTeam.owner}</span> • Saved on {savedAt}
+        </p>
+      </div>
+
+      {/* Summary stats */}
+      <div className="grid grid-cols-2 sm:grid-cols-4 gap-4 mb-6">
+        <Card className="p-5 border-slate-200">
+          <Trophy className="w-5 h-5 text-amber-500 mb-2" />
+          <div className="text-2xl font-black text-slate-900">{savedTeam.totalPoints.toLocaleString()}</div>
+          <div className="text-xs text-slate-500 uppercase font-semibold">Total Points</div>
+        </Card>
+        <Card className="p-5 border-slate-200">
+          <TrendingUp className="w-5 h-5 text-emerald-500 mb-2" />
+          <div className="text-2xl font-black text-slate-900">+{savedTeam.weekPoints}</div>
+          <div className="text-xs text-slate-500 uppercase font-semibold">This Week</div>
+        </Card>
+        <Card className="p-5 border-slate-200">
+          <Users className="w-5 h-5 text-violet-500 mb-2" />
+          <div className="text-2xl font-black text-slate-900">{savedTeam.players.length}/11</div>
+          <div className="text-xs text-slate-500 uppercase font-semibold">Players</div>
+        </Card>
+        <Card className="p-5 border-slate-200">
+          <Zap className="w-5 h-5 text-amber-500 mb-2" />
+          <div className="text-2xl font-black text-slate-900">{totalCredits.toFixed(1)}</div>
+          <div className="text-xs text-slate-500 uppercase font-semibold">Credits Used</div>
+        </Card>
+      </div>
+
+      <div className="grid lg:grid-cols-3 gap-6">
+        {/* Left: Players list (spans 2) */}
+        <div className="lg:col-span-2">
+          <Card className="border-slate-200 overflow-hidden">
+            <div className="bg-slate-900 text-white p-4 flex items-center justify-between">
+              <div className="font-bold flex items-center gap-2">
+                <Users className="w-4 h-4" /> Your Fantasy XI
+              </div>
+              <Badge className="bg-white/10 text-white border-0 hover:bg-white/10">Captain: {captain?.name || "-"}</Badge>
+            </div>
+            <div className="divide-y divide-slate-100">
+              {savedTeam.players.map((p, i) => {
+                const player = PLAYERS.find((pl) => pl.name === p.name);
+                const team = TEAMS[p.team];
+                return (
+                  <div
+                    key={i}
+                    className="p-3 flex items-center gap-3 hover:bg-slate-50/50 cursor-pointer"
+                    onClick={() => player && onPlayerClick(player)}
+                  >
+                    <div className="w-8 text-center font-black text-slate-400 text-sm">{i + 1}</div>
+                    <div
+                      className="w-10 h-10 rounded-full flex items-center justify-center text-white text-xs font-bold flex-shrink-0"
+                      style={{ background: team.primary }}
+                    >
+                      {p.team}
+                    </div>
+                    <div className="flex-1 min-w-0">
+                      <div className="font-bold text-slate-900 text-sm flex items-center gap-1.5">
+                        {p.name}
+                        {p.isCaptain && <Badge className="text-[9px] bg-amber-100 text-amber-700 border-amber-200 hover:bg-amber-100">C • 2x</Badge>}
+                        {p.isViceCaptain && <Badge className="text-[9px] bg-violet-100 text-violet-700 border-violet-200 hover:bg-violet-100">VC • 1.5x</Badge>}
+                      </div>
+                      <div className="text-xs text-slate-500">
+                        {player?.role || "—"} • {team.shortName}
+                      </div>
+                    </div>
+                    <div className="text-right">
+                      <div className="font-black text-slate-900 text-sm">
+                        {p.isCaptain ? p.points * 2 : p.isViceCaptain ? Math.round(p.points * 1.5) : p.points}
+                      </div>
+                      <div className="text-[10px] text-slate-500 uppercase">pts</div>
+                    </div>
+                    {player && (
+                      <div className="text-right hidden sm:block">
+                        <div className="font-bold text-slate-700 text-xs">{player.credits.toFixed(1)}</div>
+                        <div className="text-[10px] text-slate-500 uppercase">cr</div>
+                      </div>
+                    )}
+                  </div>
+                );
+              })}
+            </div>
+          </Card>
+
+          <div className="mt-4 flex flex-wrap gap-2">
+            <Button onClick={() => setSection("team-builder")} variant="outline" className="rounded-full">
+              <Volleyball className="w-4 h-4 mr-2" /> Edit Team
+            </Button>
+            <Button onClick={() => setSection("leaderboard")} variant="outline" className="rounded-full">
+              <Trophy className="w-4 h-4 mr-2" /> View Leaderboard
+            </Button>
+            <Button onClick={() => setSection("contests")} variant="outline" className="rounded-full">
+              <Award className="w-4 h-4 mr-2" /> Join Contests
+            </Button>
+          </div>
+        </div>
+
+        {/* Right: Sidebar info */}
+        <div className="space-y-4">
+          {/* Captain & VC */}
+          <Card className="p-5 border-slate-200">
+            <div className="text-xs font-bold text-slate-500 uppercase mb-3">Leadership</div>
+            <div className="space-y-3">
+              <div className="flex items-center gap-3 p-3 rounded-xl bg-amber-50 border border-amber-200">
+                <div className="w-10 h-10 rounded-full bg-gradient-to-br from-amber-400 to-yellow-500 flex items-center justify-center">
+                  <Crown className="w-5 h-5 text-white" />
+                </div>
+                <div className="flex-1 min-w-0">
+                  <div className="text-[10px] font-bold text-amber-700 uppercase">Captain (2x points)</div>
+                  <div className="font-bold text-slate-900 text-sm truncate">{captain?.name || "—"}</div>
+                  <div className="text-xs text-slate-500">{captain?.team}</div>
+                </div>
+              </div>
+              <div className="flex items-center gap-3 p-3 rounded-xl bg-violet-50 border border-violet-200">
+                <div className="w-10 h-10 rounded-full bg-gradient-to-br from-violet-400 to-purple-500 flex items-center justify-center">
+                  <Star className="w-5 h-5 text-white" />
+                </div>
+                <div className="flex-1 min-w-0">
+                  <div className="text-[10px] font-bold text-violet-700 uppercase">Vice-Captain (1.5x)</div>
+                  <div className="font-bold text-slate-900 text-sm truncate">{viceCaptain?.name || "—"}</div>
+                  <div className="text-xs text-slate-500">{viceCaptain?.team}</div>
+                </div>
+              </div>
+            </div>
+          </Card>
+
+          {/* Role composition */}
+          <Card className="p-5 border-slate-200">
+            <div className="text-xs font-bold text-slate-500 uppercase mb-3">Role Composition</div>
+            <div className="grid grid-cols-2 gap-2">
+              {ROLE_ORDER.map((r) => (
+                <div key={r} className="text-center p-3 rounded-xl bg-slate-50 border border-slate-200">
+                  <div className="text-lg">{ROLE_ICONS[r]}</div>
+                  <div className="text-2xl font-black text-slate-900">{roleCount[r]}</div>
+                  <div className="text-[10px] text-slate-500 font-semibold uppercase">{r}</div>
+                </div>
+              ))}
+            </div>
+          </Card>
+
+          {/* Team spread */}
+          <Card className="p-5 border-slate-200">
+            <div className="text-xs font-bold text-slate-500 uppercase mb-3">Team Distribution</div>
+            <div className="space-y-2">
+              {Object.entries(teamCount).sort((a, b) => b[1] - a[1]).map(([abbr, count]) => {
+                const team = TEAMS[abbr];
+                return (
+                  <div key={abbr} className="flex items-center gap-2">
+                    <div
+                      className="w-7 h-7 rounded-lg flex items-center justify-center text-white text-[10px] font-bold flex-shrink-0"
+                      style={{ background: team.primary }}
+                    >
+                      {abbr}
+                    </div>
+                    <div className="flex-1">
+                      <div className="flex items-center justify-between text-xs">
+                        <span className="font-semibold text-slate-700 truncate">{team.shortName}</span>
+                        <span className="font-bold text-slate-900">{count}</span>
+                      </div>
+                      <Progress value={(count / 7) * 100} className="h-1 mt-1" />
+                    </div>
+                  </div>
+                );
+              })}
+            </div>
+          </Card>
+        </div>
+      </div>
+    </div>
+  );
+}
+
 // ============ PLAYERS SECTION ============
 function PlayersSection({ onPlayerClick, onCompareClick }: any) {
   const [filterRole, setFilterRole] = useState<string>("ALL");
@@ -966,19 +1213,55 @@ function ScheduleSection() {
           <Calendar className="w-3 h-3 mr-1" /> FIXTURES & RESULTS
         </Badge>
         <h1 className="text-3xl sm:text-4xl font-black tracking-tight text-slate-900">Match Schedule</h1>
-        <p className="text-sm text-slate-500 mt-1">IPL 2025 — Mar 22 to Jun 3, 2025 • 74 matches • Final: RCB vs PBKS</p>
+        <p className="text-sm text-slate-500 mt-1">IPL 2026 — Mar 22 to Jun 3, 2026 • 74 matches • Final: RCB vs PBKS</p>
       </div>
 
       <Tabs value={tab} onValueChange={setTab}>
         <TabsList className="bg-slate-100 p-1">
-          <TabsTrigger value="upcoming" className="data-[state=active]:bg-white">IPL 2026 Upcoming ({UPCOMING_MATCHES.length})</TabsTrigger>
-          <TabsTrigger value="completed" className="data-[state=active]:bg-white">IPL 2025 Results ({MATCHES.length})</TabsTrigger>
+          <TabsTrigger value="upcoming" className="data-[state=active]:bg-white">IPL 2027 — Coming Soon</TabsTrigger>
+          <TabsTrigger value="completed" className="data-[state=active]:bg-white">IPL 2026 Results ({MATCHES.length})</TabsTrigger>
         </TabsList>
 
         <TabsContent value="upcoming" className="mt-5">
-          <div className="grid sm:grid-cols-2 gap-4">
-            {UPCOMING_MATCHES.map((m) => <UpcomingMatchCard key={m.id} match={m} />)}
-          </div>
+          <Card className="border-dashed border-2 border-slate-300 bg-gradient-to-br from-slate-50 to-white">
+            <div className="p-8 sm:p-12 text-center">
+              <div className="w-20 h-20 rounded-3xl bg-gradient-to-br from-violet-500 via-purple-500 to-fuchsia-500 flex items-center justify-center mx-auto mb-5 shadow-lg shadow-purple-500/30">
+                <Calendar className="w-10 h-10 text-white" />
+              </div>
+              <Badge className="mb-3 bg-violet-100 text-violet-700 border-violet-200 hover:bg-violet-100">
+                <Sparkles className="w-3 h-3 mr-1" /> COMING SOON
+              </Badge>
+              <h2 className="text-3xl sm:text-4xl font-black tracking-tight text-slate-900">IPL 2027</h2>
+              <p className="mt-3 text-slate-600 max-w-md mx-auto leading-relaxed">
+                {IPL_2027_STATUS.message}
+              </p>
+              <div className="mt-5 inline-flex items-center gap-2 px-4 py-2 rounded-full bg-amber-50 border border-amber-200">
+                <Calendar className="w-4 h-4 text-amber-600" />
+                <span className="text-sm font-semibold text-amber-700">Expected to start: {IPL_2027_STATUS.expectedStart}</span>
+              </div>
+              <div className="mt-8 grid grid-cols-2 sm:grid-cols-4 gap-3 max-w-2xl mx-auto">
+                <div className="p-4 rounded-xl bg-white border border-slate-200">
+                  <div className="text-2xl font-black text-slate-900">TBD</div>
+                  <div className="text-xs text-slate-500 uppercase font-semibold mt-1">Start Date</div>
+                </div>
+                <div className="p-4 rounded-xl bg-white border border-slate-200">
+                  <div className="text-2xl font-black text-slate-900">10</div>
+                  <div className="text-xs text-slate-500 uppercase font-semibold mt-1">Teams</div>
+                </div>
+                <div className="p-4 rounded-xl bg-white border border-slate-200">
+                  <div className="text-2xl font-black text-slate-900">74+</div>
+                  <div className="text-xs text-slate-500 uppercase font-semibold mt-1">Matches</div>
+                </div>
+                <div className="p-4 rounded-xl bg-white border border-slate-200">
+                  <div className="text-2xl font-black text-slate-900">₹5Cr+</div>
+                  <div className="text-xs text-slate-500 uppercase font-semibold mt-1">Prize Pool</div>
+                </div>
+              </div>
+              <p className="mt-6 text-xs text-slate-400">
+                Once BCCI announces the official IPL 2027 schedule, fixtures will appear here automatically.
+              </p>
+            </div>
+          </Card>
         </TabsContent>
 
         <TabsContent value="completed" className="mt-5">
@@ -1032,7 +1315,7 @@ function StandingsSection() {
         <Badge className="mb-2 bg-blue-100 text-blue-700 border-blue-200 hover:bg-blue-100">
           <BarChart3 className="w-3 h-3 mr-1" /> POINTS TABLE
         </Badge>
-        <h1 className="text-3xl sm:text-4xl font-black tracking-tight text-slate-900">IPL 2025 Standings</h1>
+        <h1 className="text-3xl sm:text-4xl font-black tracking-tight text-slate-900">IPL 2026 Standings</h1>
         <p className="text-sm text-slate-500 mt-1">Final standings after league stage — Top 4 qualified for Playoffs</p>
       </div>
 
@@ -1610,7 +1893,7 @@ function Footer() {
         </div>
         <Separator className="mb-4" />
         <div className="flex flex-col sm:flex-row items-center justify-between gap-2 text-xs text-slate-500">
-          <div>© 2025 IPL Fantasy League. Not affiliated with BCCI/IPL. For demo purposes only.</div>
+          <div>© 2026 IPL Fantasy League. Not affiliated with BCCI/IPL. For demo purposes only.</div>
           <div className="flex items-center gap-3">
             <span>Privacy</span><span>Terms</span><span>Cookies</span>
           </div>

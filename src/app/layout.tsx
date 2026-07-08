@@ -16,9 +16,9 @@ const poppins = Poppins({
 });
 
 export const metadata: Metadata = {
-  title: "IPL Fantasy League 2025 — Build Your Dream Cricket Team",
-  description: "The premium IPL Fantasy experience. Build your XI, compete on leaderboard, and win in IPL 2025 season. Real fixtures, real players, real points.",
-  keywords: ["IPL", "Fantasy Cricket", "IPL 2025", "Cricket Fantasy", "IPL Fantasy League", "RCB", "Bumrah", "Kohli"],
+  title: "IPL Fantasy League 2026 — Build Your Dream Cricket Team",
+  description: "The premium IPL Fantasy experience. Build your XI, compete on leaderboard, and win in IPL 2026 season — 2027 coming soon. Real fixtures, real players, real points.",
+  keywords: ["IPL", "Fantasy Cricket", "IPL 2026", "IPL 2027", "Cricket Fantasy", "IPL Fantasy League", "RCB", "Bumrah", "Kohli"],
   authors: [{ name: "IPL Fantasy" }],
 };
 
